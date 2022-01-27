@@ -1,0 +1,10 @@
+Step 1-Create class Subsequence 
+Step 2-Create Main method
+	in that Create Array by declaring and intialising and store Array lenght inside variable of integer type 
+Step 3-Write Printing Statement For print Longest increasing subsequence and call static method incre_subseq
+Step 4-Create static Method incre_subseq of int type for Array and Array length in that create one  array seq_arr using new key word 
+step 5- intailise 3 variables with 0
+step 6- use forloop for i  for intailse seq_arr array index with value 1
+step 7- Use Nested For loop with proper Initialisation,condition,update...After use if statement for condition And close For Loop.
+Step 8- Use another For loop...inside that for loop use if statement and in If Block initialize the value of max variable.
+Step 9- Outside the for loop use one return Statement for returning vale of longest Increasing Subsequence.S 

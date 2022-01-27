@@ -1,0 +1,16 @@
+step 1-import Scanner class
+step 2-Create Class Calculator2
+step 3-create object for Scanner
+step 4-Create void method input_value()
+	initialise Veriables operator of character datatype & number1,number2 of Double datatype and intilise with Scanner class by User 
+
+step 5-Create method void Addition For Addition of number1 and number2 and display result
+step 6-Create method void Substraction For Substraction of number1 and number2 and display result
+step 7-Create method void Multiplication For Multiplication of number1 and number2 and display result
+step 8-Create method void Division For Division of number1 and number2 and display result
+step 9-Create Meyhod Void operation using Switch case
+step 10-Create display() method to print final result
+step 11-Create pulic class Calculator
+step12-Create main method
+Step13-create object for Calculator1
+step 14- method call statement for input_value() method
