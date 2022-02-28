@@ -1,0 +1,9 @@
+step 1- import packages BufferedReader,BufferedWriter,File,FileReader,FileWriter,IOException and Scanner class
+Create Class File_handle
+Step 2-Create scanner class to read data from user
+Step 3-Create main method....inside that initialize two String variables with "y"
+Step 4- use while loop inside that give input for employee records..and give input for choice
+Step 5-use else if ladder and handle the exception with the help of try and catch block.
+Step 6- now to throws the exception using methods which can be called during exception handling with the Help of
+        BufferReader and give input for choices. and using this Create Methods AddRecord(),ViewAllRecord(),DeleteRecordByID(),SearchRecordbyID()
+	to Add the records, to view the records,to delete the records and to search the records respectively.

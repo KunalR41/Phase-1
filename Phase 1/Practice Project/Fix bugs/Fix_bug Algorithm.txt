@@ -1,0 +1,17 @@
+Step 1- Import Package Arraylist And Create Public Class Fix_bugs
+Step 2- create main method, Write Printing Statement And Call optionselection private method already Created
+Step 3- In that   method Create String Array in that 6 options will be provided..After that create a one integer Array in that 6 values are passing.
+Step 4- Store that integer array inside one variable.
+Step 5- Use one For loop for selecting Options.
+Step 6- Create 2 Arraylist and store values inside Arraylist using add method And add all values using addAll method.
+Step 7- Use for loop and inside that use if Statement And inside that use Switch statement for different Cases.
+                     For Cases
+Case 1- this case is for to show expenses.
+Case 2- This case is for to add user value and Add it to Arralist.
+Case 3- This case is for to erased all the expenses And confirm deleting.
+Case 4- This case is for Sorting expenses in ascending order.
+case 5- This case is For searching the specific expenses .
+Case 6- This case is for close the app.
+default - This is for invalid choice selection.
+
+Step 8- create a methods for closing app, searching expenses And sorting the expenses.
