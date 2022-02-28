@@ -1,0 +1,23 @@
+Step 1: Creation of Database and Table in MySQL
+As soon as jar file is placed in the folder, create a database and table in MySQL,
+
+Step 2: Implementation of required Web-pages
+Create a form in HTML file, where take all the inputs required to insert data into the database. Specify the servlet name in it, with the POST method as security is important aspects in database connectivity.
+
+Step 3: Creation of Java Servlet program with JDBC Connection
+To create a JDBC Connection steps are
+
+Import all the packages
+Register the JDBC Driver
+Open a connection
+Execute the query, and retrieve the result
+Clean up the JDBC Environment
+Create a separate class to create a connection of database, as it is a lame process to writing the same code snippet in all the program. Create a .java file which returns a Connection object.
+
+Step 4: To use this class method, create an object in Java Servlet program
+Below program shows Servlet Class which create a connection and insert the data in the demo table.
+
+tep 5: Get the data from the HTML file
+To get the data from the HTML file, the request object is used which calls getParameter() Method to fetch the data from the channel. After successful insertion, the writer object is created to display a success message.
+
+After insertion operation from Servlet, data will be reflected in MySQL Database.

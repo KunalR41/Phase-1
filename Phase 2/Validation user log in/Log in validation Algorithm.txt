@@ -1,0 +1,11 @@
+Step 1:- Create an Eclipse Dynamic Web Project.
+
+Step 2:- Create index.html web page in src/webapp folder and menstion servlet name and merhod inhtml file and design structure of log in page for user id ,password and login button.
+
+Step 3:- Create Servlet in src/main/java Login.java by using get and post methodes. and take user information and validate user information in that and fetch log in and logout pages by verfying conditions and information. 
+
+Step 4:- Create logout.jsp web page which showing logout message.
+
+Step 5:- Go to web.xml file set index.html as welcome page and remove unwanted lines.
+
+Step 6:- After Creating all files Run the web project on Apache Tomcate.

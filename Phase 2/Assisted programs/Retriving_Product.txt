@@ -1,0 +1,155 @@
+
+ Index.html 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="ISO-8859-1"> 
+<title>Insert title here</title> 
+</head> 
+<body> 
+<center> 
+<h2> Product Details</h2> 
+</center> 
+<form align="center" action="Retrive" method="post" > 
+Enter Product ID : <input type="text" name="pid"><br> 
+<br> 
+<input type="submit" value="Retrive"> 
+</form> 
+</body> 
+</html> 
+
+
+Retrieve.java 
+import java.io.IOException; 
+import java.io.PrintWriter; 
+import java.sql.Connection; 
+import java.sql.PreparedStatement; 
+import java.sql.ResultSet; 
+import java.sql.SQLException; 
+import javax.servlet.RequestDispatcher; 
+import javax.servlet.ServletException; 
+import javax.servlet.http.HttpServlet; 
+import javax.servlet.http.HttpServletRequest; 
+import javax.servlet.http.HttpServletResponse; 
+/** 
+* Servlet implementation class Retrive 
+*/ 
+public class Retrive extends HttpServlet { 
+private static final long serialVersionUID = 1L; 
+/** 
+* @see HttpServlet#HttpServlet() 
+*/ 
+public Retrive() { 
+super(); 
+// TODO Auto-generated constructor stub 
+} 
+/** 
+* @param <HttpServletRequest> 
+* @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response) 
+*/ 
+protected <HttpServletRequest> void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
+// TODO Auto-generated method stub 
+response.getWriter().append("Served at: ").append(((javax.servlet.http.HttpServletRequest) request).getContextPath()); 
+} 
+/** 
+* @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response) 
+*/ 
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
+PrintWriter pw=response.getWriter(); 
+ProductsBean pb=new ProductsBean(); 
+pb.setPid(Integer.parseInt(request.getParameter("pid"))); 
+pw.println("<html><body>"); 
+response.setContentType("text/html"); 
+try { 
+Connection con=DbConnection.dbConn(); 
+String sql="select * from product where pid=(?)"; 
+PreparedStatement ps=con.prepareStatement(sql); 
+ps.setInt(1,pb.getPid()); 
+ResultSet rs=ps.executeQuery(); 
+RequestDispatcher rd=request.getRequestDispatcher("index.html"); 
+rd.include(request, response); 
+// pw.print("<br><center><h3>Pr</h3><br></center>"); 
+pw.println("<center><table border=1 width=14% height=10%>"); 
+pw.println("<tr><th>Product Id</th><th>Product Name</th><th>Price</th>"); 
+while(rs.next()) { 
+//pw.println(rs.getInt(1)+" "+rs.getString(2)); 
+pw.println("<tr><td>" + rs.getInt(1)+ "</td><td>" + rs.getString(2) +"</td><td>"+ rs.getDouble(3)+"</td></tr></center>"); 
+} 
+pw.println("</table>"); 
+pw.println("</html></body>"); 
+//rd.include(request, response); 
+} catch (ClassNotFoundException e) { 
+// TODO Auto-generated catch block 
+e.printStackTrace(); 
+} catch (SQLException e) { 
+// TODO Auto-generated catch block 
+e.printStackTrace(); 
+} 
+} 
+}
+
+
+
+ 
+ProductBean.java 
+public class ProductsBean { 
+int Pid; 
+String Pname; 
+Double Price; 
+public int getPid() { 
+return Pid; 
+} 
+public void setPid(int pid) { 
+Pid = pid; 
+} 
+public String getPname() { 
+return Pname; 
+} 
+public void setPname(String pname) { 
+Pname = pname; 
+} 
+public Double getPrice() { 
+return Price; 
+} 
+public void setPrice(Double price) { 
+Price = price; 
+} 
+}
+
+
+ 
+DbConnection.java 
+import java.sql.Connection; 
+import java.sql.DriverManager; 
+import java.sql.SQLException; 
+public class DbConnection { 
+public static Connection dbConn() throws ClassNotFoundException, SQLException { 
+Class.forName("com.mysql.jdbc.Driver"); 
+Connection con=DriverManager.getConnection("jdbc:mysql://localhost:8091/product_details","Abhishek",""); 
+return con; 
+} 
+}
+ 
+Web.xml 
+<?xml version="1.0" encoding="UTF-8"?> 
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5"> 
+<display-name> Product Details Using the Product ID </display-name> 
+<welcome-file-list> 
+<welcome-file>index.html</welcome-file> 
+<welcome-file>index.jsp</welcome-file> 
+<welcome-file>index.htm</welcome-file> 
+<welcome-file>default.html</welcome-file> 
+<welcome-file>default.jsp</welcome-file> 
+<welcome-file>default.htm</welcome-file> 
+</welcome-file-list> 
+<servlet> 
+<description></description> 
+<display-name>Retrive</display-name> 
+<servlet-name>Retrive</servlet-name> 
+<servlet-class>Retrive</servlet-class> 
+</servlet> 
+<servlet-mapping> 
+<servlet-name>Retrive</servlet-name> 
+<url-pattern>/Retrive</url-pattern> 
+</servlet-mapping> 
+</web-app>

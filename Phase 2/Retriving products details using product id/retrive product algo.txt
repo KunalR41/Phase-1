@@ -1,0 +1,11 @@
+
+step 1:-First, create a table in Oracle and insert some data.
+
+step 2:-Start-Control Panel- Administrative Tools- Data Sources (ODBC)-go to system DSN tab-click add button-select a driver for which you want to set up a data source (for Oracle- Oracle in XE)-select it and click finish-give any name in data source name textbox-then click ok button.
+
+step 3:-Then write a program to display data from database through servlet and JDBC.
+
+step 4:-set up with web.xml
+ 
+step 5:-Then compile and running the servlet in a web browser.And run the tomacat.
+

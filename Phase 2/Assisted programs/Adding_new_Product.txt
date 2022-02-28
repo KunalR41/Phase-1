@@ -1,0 +1,176 @@
+
+ Index.jsp 
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+pageEncoding="UTF-8"%> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title>Product Registration</title> 
+</head> 
+<body> 
+<form action="Register" method="post"> 
+<table> 
+<tr><td>Product ID: </td><td><input type="text" name="id"></td></tr> 
+<tr><td>Product Name: </td><td><input type="text" name="name"></td></tr> 
+<tr><td>Product Cost: </td><td><input type="text" name="cost"></td></tr> 
+<tr><td>Quantity: </td><td><input type="text" name="quantity"></td></tr> 
+<tr><td></td><td><input type="submit" value="Add Product"></td></tr> 
+</table> 
+</form> 
+</body> 
+</html> 
+
+
+
+
+Register.java 
+
+import java.io.IOException; 
+import javax.servlet.ServletException; 
+import javax.servlet.annotation.WebServlet; 
+import javax.servlet.http.HttpServlet; 
+import javax.servlet.http.HttpServletRequest; 
+import javax.servlet.http.HttpServletResponse; 
+@WebServlet("/Register") 
+public class Register extends HttpServlet { 
+private static final long serialVersionUID = 1L; 
+/** 
+* @see HttpServlet#HttpServlet() 
+*/ 
+public Register() { 
+super(); 
+// TODO Auto-generated constructor stub 
+} 
+/** 
+* @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response) 
+*/ 
+protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+throws ServletException, IOException { 
+// TODO Auto-generated method stub 
+response.getWriter().append("Served at: ").append(request.getContextPath()); 
+} 
+/** 
+* @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response) 
+*/ 
+protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+throws ServletException, IOException { 
+String id = request.getParameter("id"); 
+String name = request.getParameter("name"); 
+String cost = request.getParameter("cost"); 
+String quantity = request.getParameter("quantity"); 
+Product member = new Product(id, name, cost, quantity); 
+ProductAdd rDao = new ProductAdd(); 
+String result = rDao.insert(member); 
+response.getWriter().print(result); 
+} 
+} 
+ProductAdd.java= 
+import java.sql.Connection; 
+import java.sql.DriverManager; 
+import java.sql.PreparedStatement; 
+import java.sql.SQLException; 
+public class ProductAdd { 
+private String dbUrl = "jdbc:mysql://localhost:8091/products"; 
+private String dbUname = "Pallavi"; 
+private String dbPassword = "Pallu@123"; 
+private String dbDriver = "com.mysql.cj.jdbc.Driver"; 
+public void loadDriver(String dbDriver) 
+{ 
+try { 
+Class.forName(dbDriver); 
+} catch (ClassNotFoundException e) { 
+// TODO Auto-generated catch block 
+e.printStackTrace(); 
+} 
+} 
+public Connection getConnection() 
+{ 
+Connection con = null; 
+try { 
+con = DriverManager.getConnection(dbUrl, dbUname, dbPassword); 
+} catch (SQLException e) { 
+// TODO Auto-generated catch block 
+e.printStackTrace(); 
+} 
+return con; 
+} 
+public String insert(Product member) 
+{ 
+loadDriver(dbDriver); 
+Connection con = getConnection(); 
+String result = "Data Insert Successfully"; 
+String sql = "insert into addproduct values(?,?,?,?)"; 
+PreparedStatement ps; 
+try { 
+ps = con.prepareStatement(sql); 
+ps.setString(1, member.getid()); 
+ps.setString(2, member.getname()); 
+ps.setString(3, member.getcost()); 
+ps.setString(4, member.getquantity()); 
+ps.executeUpdate(); 
+} catch (SQLException e) { 
+// TODO Auto-generated catch block 
+e.printStackTrace(); 
+result = "Data Insertion failed!!"; 
+} 
+return result; 
+} 
+}
+--------------------------------------------------------------------------------------------------------------------------------------
+ Product.java 
+public class Product { 
+private String id, name, cost, quantity; 
+public Product() { 
+super(); 
+} 
+public Product(String id, String name, String cost, String quantity) { 
+super(); 
+this.id = id; 
+this.name = name; 
+this.cost = cost; 
+this.quantity = quantity; 
+} 
+public String getid() { 
+return id; 
+} 
+public void setid(String id) { 
+this.id = id; 
+} 
+public String getname() { 
+return name; 
+} 
+public void setname(String name) { 
+this.name = name; 
+} 
+public String getcost() { 
+return cost; 
+} 
+public void setcost(String cost) { 
+this.cost = cost; 
+} 
+public String getquantity() { 
+return quantity; 
+} 
+public void setquantity(String quantity) { 
+this.quantity = quantity; 
+} 
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+Web.xml= 
+<?xml version="1.0" encoding="UTF-8"?> 
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1"> 
+<display-name>AddProduct</display-name> 
+<welcome-file-list> 
+<welcome-file>index.html</welcome-file> 
+<welcome-file>index.jsp</welcome-file> 
+<welcome-file>index.htm</welcome-file> 
+<welcome-file>default.html</welcome-file> 
+<welcome-file>default.jsp</welcome-file> 
+<welcome-file>default.htm</welcome-file> 
+</welcome-file-list> 
+</web-app>
+
+----------------------------------------------------------------------------------

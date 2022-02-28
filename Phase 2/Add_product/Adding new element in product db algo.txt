@@ -1,0 +1,16 @@
+Step 1:-
+connectivity between Java program and database.
+1. Loading the Driver
+2. Create the connections.
+3. Create a statement: Once a connection is established you can interact with the database.
+4. Execute the query.
+5. Close the connections.
+
+Step 2:-
+Then write Java program to insert records to a table using JDBC.
+If insertion is successful output will be: Successfully inserted. 
+If insertion is not successful output will be:insertion failed.
+
+Step 3:-
+When you run JDBCExample, it produces the following result.
+

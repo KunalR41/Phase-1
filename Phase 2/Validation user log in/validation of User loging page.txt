@@ -1,0 +1,115 @@
+#### Validation of User Log in
+
+#index.html 
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<center>
+<h2>Please Login Here</h2> <br>
+<form action = "Login" method = "post">
+Email Id : <input type = "text" placeholder = "email_id " name=email> <br><br>
+Password : <input type = "text"  placeholder ="password" name=password> <br><br>
+<input type = "submit" value = "Submit">  
+ </form>
+</center> 
+</body>
+</html>
+
+
+----------------------------------------------------------------------------------------------------
+# Logout.jsp
+
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Log Out</title>
+</head>
+<body>
+<center> 
+<b><h2>Logout Successfully!!! </h2></b>
+ </center> 
+</body>
+</html>
+
+------------------------------------------------------------------------------------------------------
+# Login.java(Servlet)
+
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class Login
+ */
+@WebServlet("/Login")
+public class Login extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Login() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		  PrintWriter out = response.getWriter();   
+		  String email = request.getParameter("email"); 
+		  String password = request.getParameter("password"); 
+		  
+		   String id = "Kunal@gmail.com"; 
+		   String pass = "123456"; 
+		    
+		   if(email.equals(id) && password.equals(pass)) 
+		   { 
+		    response.getWriter().write("<br><br><center><h2>Login Successfully!!! </h2>"); 
+		     out.print("<br><form action = 'logout.jsp'><br>"); 
+		        out.print("<input type='submit' value='Logout'></center>");   
+		        out.print("</form>");   
+		    
+		   } 
+		   else { 
+		   response.getWriter().write("<br><br><center><h2>Invalid Email_id and Password </h2><br>"); 
+		   response.getWriter().write("<p>If you want to log in Please Enter Valid Information.....!!! </p>"); 
+		   out.print("<form action = 'index.html'><br>"); 
+		      out.print("<input type='submit' value='Login'></center>");   
+		      out.print("</form>"); 
+		   }
+	}
+
+}
+-------------------------------------------------------------------------------------------------------------------------
+
+
+#Web.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>Validation of User Login</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    
+  </welcome-file-list>
+</web-app
+
+-----------------------------------------------------------------------------------------------------------------------------
