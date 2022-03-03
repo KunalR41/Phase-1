@@ -1,0 +1,40 @@
+                                  Phase 3 Final Project
+
+Project name: Make an E-commerce Website for Sporty Shoes .
+Developer name: Pallavi Sunil Pawar.
+Language: java
+Objective of project:
+As a Full Stack Developer, complete the features of the application by planning the development and pushing the source code to the GitHub repository. 
+
+TOOLS
+•	Intermediate Java
+•	Java IDEs such as Eclipse, IntelliJ IDEA, or Visual Studio Code
+•	Basics of HTTP templating, HTML, and CSS
+
+TECHNIQUES
+•	Basics of web technologies, such as HTTP templating, HTML and CSS
+•	Relational databases (SQL)
+
+      
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
